@@ -47,7 +47,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Typography variant="h2" fontWeight="bold" gutterBottom>
+              <Typography variant="h2" fontWeight="bold" className="bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-900" gutterBottom>
                 Sibghat Zaka Ullah
               </Typography>
               <Typography
@@ -63,13 +63,13 @@ const Hero = () => {
               >
                 {skills[skillIndex]}
               </Typography>
-              <Typography variant="body2" component="p" paragraph width={"50rem"} >
-                As a MERN stack developer, you work with MongoDB, Express.js, React, and Node.js to build web applications, handling both the front-end and back-end. Your responsibilities include designing, developing, and maintaining web applications, ensuring seamless performance and optimal user experience. You'll be involved in tasks like creating user interfaces, managing databases, and developing server-side logic.</Typography>
+              <Typography variant="body2" component="p" fontFamily={"revert"} paragraph width={"50rem"} >
+                As a MERN stack developer, I work with MongoDB, Express.js, React, and Node.js to build web applications, handling both the front-end and back-end. My responsibilities include designing, developing, and maintaining web applications, ensuring seamless performance and optimal user experience. I'll be involved in tasks like creating user interfaces, managing databases, and developing server-side logic.</Typography>
               <Box sx={{ mt: 3, mb: 4 }}>
                 <IconButton color="primary" aria-label="github" component="a" href="github.com/Sibghat776">
                   <FaGithub size={24} />
                 </IconButton>
-                <IconButton color="primary" aria-label="linkedin" component="a" href="#">
+                <IconButton color="primary" aria-label="linkedin" component="a" href="www.linkedin.com/in/sibghat-ullah-842005327">
                   <FaLinkedin size={24} />
                 </IconButton>
                 <IconButton color="primary" aria-label="twitter" component="a" href="#">

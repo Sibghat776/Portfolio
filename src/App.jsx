@@ -3,15 +3,17 @@ import './App.css'
 import { Router } from 'react-router-dom'
 import Navbar from "./Components/Navbar"
 import Hero from "./Components/Hero"
+import Skills from "./Components/Skills"
 
 function App() {
 
   return (
     <>
-    <div className="bg-gradient-to-r from-gray-100 via-blue-200 to-gray-100 main">
-      <Navbar/>
-      <Hero/>
-    </div>
+      <div className="bg-gradient-to-b from-sky-400 to-sky-200 main min-h-screen">
+        <Navbar />
+        <Hero />
+        <Skills />
+      </div>
     </>
   )
 }
