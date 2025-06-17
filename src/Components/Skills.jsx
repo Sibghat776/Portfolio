@@ -1,108 +1,42 @@
 import * as React from 'react';
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-import FastfoodIcon from '@mui/icons-material/Fastfood';
-import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-import HotelIcon from '@mui/icons-material/Hotel';
-import RepeatIcon from '@mui/icons-material/Repeat';
-import Typography from '@mui/material/Typography';
-import { purple } from '@mui/material/colors';
+import { Typography, Box } from '@mui/material';
+import { SiJavascript, SiMongodb, SiExpress, SiReact, SiHtml5, SiCss3, SiPostman, SiGithub, SiNodedotjs } from 'react-icons/si';
+
+const skills = [
+  { name: 'JavaScript', icon: <SiJavascript className="text-yellow-400" /> },
+  { name: 'Node.js', icon: <SiNodedotjs className="text-green-600" /> },
+  { name: 'MongoDB', icon: <SiMongodb className="text-green-700" /> },
+  { name: 'Express', icon: <SiExpress className="text-gray-200" /> },
+  { name: 'React', icon: <SiReact className="text-cyan-300" /> },
+  { name: 'HTML5', icon: <SiHtml5 className="text-orange-500" /> },
+  { name: 'CSS3', icon: <SiCss3 className="text-blue-400" /> },
+  { name: 'GitHub', icon: <SiGithub className="text-white" /> },
+  { name: 'Postman', icon: <SiPostman className="text-orange-400" /> },
+];
 
 export default function Skills() {
   return (
-    <div>
+    <div className="bg-gradient-to-b from-gray-900 via-slate-800 to-gray-900 py-10 px-6 md:px-28">
       <Typography
-        variant="h2"
-        className="text-center text-sky-500 border-y-4 border-indigo-500 border-double text-4xl border-top font-bold mb-8"
+        variant="h3"
+        className="text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400 font-extrabold mb-20 pb-20"
       >
-        My Skills Timeline
+        My Skills
       </Typography>
 
-      <Timeline position="alternate" className="px-4 md:px-10">
-        <TimelineItem>
-          <TimelineOppositeContent
-            sx={{ m: 'auto 0' }}
-            align="right"
-            variant="body2"
-            color="text.secondary"
+      <Box className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        {skills.map((skill, index) => (
+          <Box
+            key={index}
+            className="flex flex-col items-center justify-center p-10 rounded-3xl bg-[#1f2937] text-white shadow-lg hover:shadow-[0_0_30px_#00fff7] transition duration-300 transform hover:scale-105"
           >
-            9:30 am
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineConnector />
-            <TimelineDot>
-              <FastfoodIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h6" component="span">
-              Eat
+            <div className="text-7xl mb-4 drop-shadow-lg">{skill.icon}</div>
+            <Typography variant="h6" className="font-bold text-lg">
+              {skill.name}
             </Typography>
-            <Typography>Because you need strength</Typography>
-          </TimelineContent>
-        </TimelineItem>
-
-        <TimelineItem>
-          <TimelineOppositeContent
-            sx={{ m: 'auto 0' }}
-            variant="body2"
-            color="text.secondary"
-          >
-            10:00 am
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineConnector />
-            <TimelineDot color="primary">
-              <LaptopMacIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h6" component="span">
-              Code
-            </Typography>
-            <Typography>Because it's awesome!</Typography>
-          </TimelineContent>
-        </TimelineItem>
-
-        <TimelineItem>
-          <TimelineSeparator>
-            <TimelineConnector />
-            <TimelineDot color="primary" variant="outlined">
-              <HotelIcon />
-            </TimelineDot>
-            <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h6" component="span">
-              Sleep
-            </Typography>
-            <Typography>Because you need rest</Typography>
-          </TimelineContent>
-        </TimelineItem>
-
-        <TimelineItem>
-          <TimelineSeparator>
-            <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
-            <TimelineDot color="secondary">
-              <RepeatIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: '12px', px: 2 }}>
-            <Typography variant="h6" component="span">
-              Repeat
-            </Typography>
-            <Typography>Because this is the life you love!</Typography>
-          </TimelineContent>
-        </TimelineItem>
-      </Timeline>
+          </Box>
+        ))}
+      </Box>
     </div>
   );
 }

@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-gradient-to-b from-sky-400 to-sky-200 main min-h-screen">
+      <div className="bg-gradient-to-b from-sky-400 to-sky-200 main">
         <Navbar />
         <Hero />
         <Skills />
