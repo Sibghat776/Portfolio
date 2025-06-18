@@ -13,6 +13,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import myPic from "../assets/myPic 1.jpg"; // Make sure path is correct
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const pages = ['About Me', 'Skills', 'Projects', 'Contact Me'];
 
@@ -34,15 +36,29 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 30;
+      setIsScrolled(scrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "transparent", boxShadow: 'none' }}>
+    <AppBar position="sticky" sx={{
+      bgcolor: isScrolled ? "rgba(0,0,0,0.2)" : "transparent", boxShadow: 'none', backdropFilter: "blur(6px)",
+      transition: "all 0.3s ease",
+    }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
           {/* Icon + Brand */}
-          <CodeOffSharpIcon className="text-purple-600" sx={{ fontSize: "2.4rem", display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          
+          <CodeOffSharpIcon className="text-yellow-200" sx={{ fontSize: "3.7rem", display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+
 
           {/* Mobile Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: "center" }}>
@@ -51,7 +67,7 @@ function Navbar() {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon className="text-purple-600" />
+              <MenuIcon className="text-slate-100" />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -65,20 +81,20 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography className="text-purple-700">{page}</Typography>
+                  <Typography className="text-blue-400">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
           {/* Small Logo */}
-          <CodeOffSharpIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} className="text-purple-600" />
+          <CodeOffSharpIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} className="text-white" />
           <Typography
             variant="h3"
             noWrap
             component="a"
             href="#"
-            className="text-purple-600"
+            className="text-white"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -101,8 +117,8 @@ function Navbar() {
                 className="relative group text-purple-200 hover:text-black font-bolder font-medium tracking-wide"
                 sx={{ background: "transparent", px: 2 }}
               >
-                <span className="relative text-black z-10">{page}</span>
-                <span className="absolute left-1/2 bottom-0 w-0 h-[3px] bg-purple-400 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                <span className="relative text-white font-bold z-10">{page}</span>
+                <span className="absolute left-1/2 bottom-0 w-0 h-[3px] bg-blue-800 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Button>
             ))}
           </Box>
@@ -111,7 +127,7 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Sibghat Ullah" src={myPic} />
+                <Avatar alt="Sibghat Ullah" sx={{ width: "3.5rem", height: "3.6rem" }} src={myPic} />
               </IconButton>
             </Tooltip>
             <Menu
