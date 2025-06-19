@@ -6,18 +6,20 @@ import Hero from "./Components/Hero"
 import Skills from "./Components/Skills"
 import AboutMe from "./Components/AboutMe"
 import Projects from "./Components/Projects"
+import Contact from "./Components/Contact.jsx"
 
 function App() {
 
   return (
     <>
-      <div className="bg-gradient-to-b from-sky-400 to-sky-200 main">
+      <div className="bg-gradient-to-bl from-sky-500 via-sky-200 to-sky-500">
         <Navbar />
         <Hero />
-      </div>
       <AboutMe/>
         <Skills />
         <Projects/>
+        <Contact/>
+      </div>
     </>
   )
 }

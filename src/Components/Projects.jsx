@@ -1,68 +1,28 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import project2 from "../assets/Quiz App Thumbnail.jpg";
+import project3 from "../assets/Weather App.jpg";
 
 const projects = [
   {
-    title: 'Project 1',
-    description: 'Description for Project 1',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
+    title: 'Country Data',
+    description: 'Explore world countries & their stats.',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/2/24/The_world_flag_2006.svg',
+    link: 'https://sibghatweatherapp.netlify.app/',
   },
   {
-    title: 'Project 2',
-    description: 'Description for Project 2',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
+    title: 'Quiz Application',
+    description: 'Test your knowledge with this fun quiz!',
+    image: project2,
+    link: "https://quizappication.netlify.app/",
   },
   {
-    title: 'Project 3',
-    description: 'Description for Project 3',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
-  },
-  {
-    title: 'Project 4',
-    description: 'Description for Project 4',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
-  },
-  {
-    title: 'Project 5',
-    description: 'Description for Project 5',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
-  },
-  {
-    title: 'Project 6',
-    description: 'Description for Project 6',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
-  },
-  {
-    title: 'Project 7',
-    description: 'Description for Project 7',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
-  },
-  {
-    title: 'Project 8',
-    description: 'Description for Project 8',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
-  },
-  {
-    title: 'Project 9',
-    description: 'Description for Project 9',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
-  },
-  {
-    title: 'Project 10',
-    description: 'Description for Project 10',
-    image: 'https://via.placeholder.com/300x200',
-    link: '#'
+    title: 'Weather App',
+    description: 'Check current weather by city or country.',
+    image: project3,
+    link: 'https://sibghatweatherapp.netlify.app/',
   },
 ];
 
@@ -70,58 +30,58 @@ export default function ProjectSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
   };
 
-  const getVisibleProjects = () => {
-    const visible = [];
-    for (let i = -1; i <= 1; i++) {
-      visible.push(projects[(currentIndex + i + projects.length) % projects.length]);
-    }
-    return visible;
+  const getProject = (offset) => {
+    const index = (currentIndex + offset + projects.length) % projects.length;
+    return projects[index];
   };
 
   return (
-    <Box className="min-h-screen py-20 px-4 md:px-24 bg-gradient-to-br from-sky-400 via-sky-300 to-sky-100">
-      <Typography variant="h3" className="text-center text-slate-900 font-bold mb-12 text-4xl md:text-5xl">
+    <Box className="min-h-screen  py-28 px-4 bg-gradient-to-br from-sky-500 via-sky-200 to-sky-500 overflow-hidden">
+      <Typography variant="h3" className="text-center pb-24 text-slate-900 font-bold mb-12 text-4xl md:text-5xl">
         My Projects
       </Typography>
 
-      <Box className="flex items-center justify-center gap-6 relative">
+      <Box className="flex items-center justify-center relative gap-4">
         <Button onClick={prevSlide} className="absolute left-0 z-10 bg-white/30 backdrop-blur-lg p-3 rounded-full hover:bg-white/50">
           <FaArrowLeft size={20} />
         </Button>
 
-        {getVisibleProjects().map((project, index) => (
-          <motion.div
-            key={index}
-            className={`rounded-3xl bg-white/10 backdrop-blur-lg border border-white/30 shadow-xl hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-transform duration-300 ${index === 1 ? 'scale-110 shadow-[0_0_40px_rgba(255,255,255,0.6)]' : 'scale-95 opacity-70'}`}
-            style={{ width: '300px', padding: '20px' }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-          >
-            <img src={project.image} alt={project.title} className="rounded-xl mb-4 w-full" />
-            <Typography variant="h6" className="text-white font-semibold mb-2">
-              {project.title}
-            </Typography>
-            <Typography variant="body2" className="text-white mb-4">
-              {project.description}
-            </Typography>
-            <Button
-              variant="outlined"
-              className="text-white border-white hover:bg-white hover:text-sky-700"
-              href={project.link}
-              target="_blank"
+        <Box className="flex gap-6 justify-center items-center">
+          {[getProject(-1), getProject(0), getProject(1)].map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: index === 1 ? 1 : 0.5, scale: index === 1 ? 1.05 : 0.9 }}
+              transition={{ duration: 0.2 }}
+              className={`rounded-2xl bg-white/10 backdrop-blur-lg border border-white/30 shadow-xl space-y-3 px-6 py-6 w-[18rem] md:w-[22rem] hover:scale-105 transition-all ${
+                index === 1 ? 'z-20' : 'z-10'
+              }`}
             >
-              Live Link
-            </Button>
-          </motion.div>
-        ))}
+              <img src={project.image} alt={project.title} className="rounded-xl mb-4 h-40 w-full object-cover" />
+              <Typography variant="h6" className="text-black font-semibold mb-1">
+                {project.title}
+              </Typography>
+              <Typography variant="body2" className="text-gray-800 mb-3">
+                {project.description}
+              </Typography>
+              <Button
+                variant="outlined"
+                className="text-black border-white hover:bg-black hover:text-white"
+                href={project.link}
+                target="_blank"
+              >
+                Live Link
+              </Button>
+            </motion.div>
+          ))}
+        </Box>
 
         <Button onClick={nextSlide} className="absolute right-0 z-10 bg-white/30 backdrop-blur-lg p-3 rounded-full hover:bg-white/50">
           <FaArrowRight size={20} />
