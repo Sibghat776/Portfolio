@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Container, Grid, Typography, IconButton, Button } from "@mui/material";
-import { flex, gridRow, styled, width } from "@mui/system";
-import { motion, px } from "framer-motion";
+import { styled } from "@mui/system";
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
 
@@ -10,14 +10,17 @@ const HeroSection = styled(Box)(({ theme }) => ({
   padding: theme.spacing(4),
   display: "flex",
   alignItems: "center",
-}))
+}));
 
-const ProfileImage = styled(motion.img)({
+const ProfileImage = styled(motion.img)(({ theme }) => ({
   width: "100%",
-  maxWidth: "400px",
+  maxWidth: "300px",
   borderRadius: "20px",
   boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-})
+  [theme.breakpoints.up("md")]: {
+    maxWidth: "400px",
+  },
+}));
 
 const skills = [
   "MERN Stack Developer",
@@ -25,57 +28,81 @@ const skills = [
   "ExpressJS",
   "ReactJS",
   "NodeJS"
-]
+];
 
 const Hero = () => {
-  const [skillIndex, setSkillIndex] = useState(0)
+  const [skillIndex, setSkillIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setSkillIndex((prev) => (prev + 1) % skills.length)
-    }, 2000)
-    return () => clearInterval(interval)
-  }, [])
+      setSkillIndex((prev) => (prev + 1) % skills.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <HeroSection >
-      <Container>
+    <HeroSection>
+      <Container maxWidth="lg">
         <Grid container spacing={4} alignItems="center">
+          {/* Left Text Side */}
           <Grid item xs={12} md={6}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Typography variant="h2" fontWeight="bold" className="bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-900" gutterBottom>
+              <Typography
+                variant="h3"
+                fontWeight="bold"
+                className="bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-900"
+                gutterBottom
+                sx={{
+                  fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                }}
+              >
                 Sibghat Zaka Ullah
               </Typography>
+
               <Typography
-                variant="h4"
+                variant="h5"
                 component={motion.div}
                 key={skillIndex}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
                 color="primary"
                 gutterBottom
+                sx={{
+                  fontSize: { xs: "1.3rem", sm: "1.7rem", md: "2rem" },
+                }}
               >
                 {skills[skillIndex]}
               </Typography>
-              <Typography variant="body2" component="p" fontFamily={"revert"} paragraph width={"50rem"} >
-                As a MERN stack developer, I work with MongoDB, Express.js, React, and Node.js to build web applications, handling both the front-end and back-end. My responsibilities include designing, developing, and maintaining web applications, ensuring seamless performance and optimal user experience. I'll be involved in tasks like creating user interfaces, managing databases, and developing server-side logic.</Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "0.95rem", md: "1.1rem" },
+                  color: "#333",
+                  lineHeight: 1.6,
+                }}
+              >
+                As a MERN stack developer, I work with MongoDB, Express.js, React, and Node.js to build web applications. I design and maintain apps with seamless performance and optimal user experience.
+              </Typography>
+
+              {/* Socials + Resume */}
               <Box sx={{ mt: 3, mb: 4 }}>
-                <IconButton color="primary" aria-label="github" component="a" href="github.com/Sibghat776">
-                  <FaGithub size={24} />
+                <IconButton color="primary" href="https://github.com/Sibghat776" target="_blank">
+                  <FaGithub size={22} />
                 </IconButton>
-                <IconButton color="primary" aria-label="linkedin" component="a" href="www.linkedin.com/in/sibghat-ullah-842005327">
-                  <FaLinkedin size={24} />
+                <IconButton color="primary" href="https://www.linkedin.com/in/sibghat-ullah-842005327" target="_blank">
+                  <FaLinkedin size={22} />
                 </IconButton>
-                <IconButton color="primary" aria-label="twitter" component="a" href="#">
-                  <FaTwitter size={24} />
+                <IconButton color="primary" href="#">
+                  <FaTwitter size={22} />
                 </IconButton>
               </Box>
+
               <Button
                 variant="contained"
                 size="large"
@@ -86,6 +113,8 @@ const Hero = () => {
               </Button>
             </motion.div>
           </Grid>
+
+          {/* Right Image Side */}
           <Grid item xs={12} md={6} container justifyContent="center">
             <motion.div
               whileHover={{ scale: 1.02 }}
@@ -98,14 +127,13 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                sx={{ width: "20rem" }}
               />
             </motion.div>
           </Grid>
         </Grid>
       </Container>
     </HeroSection>
-  )
-}
+  );
+};
 
 export default Hero;

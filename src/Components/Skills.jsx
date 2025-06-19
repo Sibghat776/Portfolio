@@ -16,7 +16,7 @@ const skills = [
 
 export default function Skills() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-bl from-sky-500 via-sky-200 to-sky-500 py-20 px-4 md:px-24">
+    <div id='skills' className="min-h-screen w-full bg-gradient-to-bl from-sky-500 via-sky-200 to-sky-500 py-20 px-4 md:px-24">
       <div className="mb-20 text-center">
         <Typography
           variant="h3"

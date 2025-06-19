@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Contact() {
   return (
-    <Box className="min-h-screen overflow-hidden pt-8 pb-20 px-4 bg-gradient-to-bl from-sky-500 via-sky-200 to-sky-500">
+    <Box id='contact' className="min-h-screen overflow-hidden pt-8 pb-20 px-4 bg-gradient-to-bl from-sky-500 via-sky-200 to-sky-500">
       <Typography
         variant="h3"
         className="text-center py-7 text-slate-900 font-bold text-4xl md:text-5xl"

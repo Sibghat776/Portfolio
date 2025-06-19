@@ -16,7 +16,12 @@ import myPic from "../assets/myPic 1.jpg"; // Make sure path is correct
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const pages = ['About Me', 'Skills', 'Projects', 'Contact Me'];
+const pages = [
+  { myCmp: 'About Me', link: "#aboutMe" },
+  { myCmp: 'Skills', link: "#skills" },
+  { myCmp: 'Projects', link: "#projects" },
+  { myCmp: 'Contact Me', link: "#contact" }
+];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -81,7 +86,9 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography className="text-blue-400">{page}</Typography>
+                  <a href={page.link}>
+                    <Typography className="text-blue-400">{page.myCmp}</Typography>
+                  </a>
                 </MenuItem>
               ))}
             </Menu>
@@ -112,12 +119,13 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "center", gap: 2 }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.myCmp}
                 onClick={handleCloseNavMenu}
                 className="relative group text-purple-200 hover:text-black font-bolder font-medium tracking-wide"
                 sx={{ background: "transparent", px: 2 }}
+                href={page.link}
               >
-                <span className="relative text-white font-bold z-10">{page}</span>
+                <span className="relative text-white font-bold z-10">{page.myCmp}</span>
                 <span className="absolute left-1/2 bottom-0 w-0 h-[3px] bg-blue-800 transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </Button>
             ))}

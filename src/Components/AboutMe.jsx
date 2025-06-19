@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import myPic from "../assets/myPic 1.jpg"
 const AboutMe = () => {
     return (
-        <div className="w-full min-h-screen bg-gradient-to-br from-sky-500 via-sky-200 to-sky-500 py-20 px-6 md:px-24">
+        <div id='aboutMe' className="w-full min-h-screen bg-gradient-to-br from-sky-500 via-sky-200 to-sky-500 py-20 px-6 md:px-24">
             <Typography
                 variant="h3"
                 className="text-slate-900 font-bold text-center text-4xl md:text-5xl mb-16"

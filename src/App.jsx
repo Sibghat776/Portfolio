@@ -15,10 +15,10 @@ function App() {
       <div className="bg-gradient-to-bl from-sky-500 via-sky-200 to-sky-500">
         <Navbar />
         <Hero />
-      <AboutMe/>
+        <AboutMe />
         <Skills />
-        <Projects/>
-        <Contact/>
+        <Projects />
+        <Contact />
       </div>
     </>
   )
