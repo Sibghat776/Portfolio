@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Box, Container, Grid, Typography, IconButton, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import { BiDownload } from "react-icons/bi";
+import resume from "../../public/Sibghat Zaka Ullah.pdf"
 
 const HeroSection = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
@@ -98,14 +99,16 @@ const Hero = () => {
                 <IconButton color="primary" href="https://www.linkedin.com/in/sibghat-ullah-842005327" target="_blank">
                   <FaLinkedin size={22} />
                 </IconButton>
-                <IconButton color="primary" href="#">
-                  <FaTwitter size={22} />
+                <IconButton color="primary" href="https://wa.me/923343688913" target="_blank">
+                  <FaWhatsapp size={22} />
                 </IconButton>
               </Box>
 
               <Button
                 variant="contained"
                 size="large"
+                download
+                href={resume}
                 startIcon={<BiDownload />}
                 sx={{ borderRadius: 2 }}
               >
